@@ -1,9 +1,9 @@
 # C-Shell
 A shell in C language which supports most functionalities of a Unix shell like I/O redirection, piping, job control etc.
 
-<!-- <p align="center">
-    <img src=".gif" width="512"/>
-</p> -->
+<p align="center">
+    <img src="shell.gif" width="512"/>
+</p>
 
 ## Division of Code: <br>
 * ``headers.h`` contains function declaration for all functions. 
