@@ -1,29 +1,48 @@
-Usage:
+# C-Shell
+A shell in C language which supports most functionalities of a Unix shell like I/O redirection, piping, job control etc.
 
-1. make
-2. ./a.out
-3. enter "quit" to exit the shell
+<!-- <p align="center">
+    <img src=".gif" width="512"/>
+</p> -->
 
-Files and their respective functions:
+## Division of Code: <br>
+* ``headers.h`` contains function declaration for all functions. 
+* The other files have the code for implementing the tasks suggested by the name of the files.
+* The code starts executing from main.c from where all other functionalities are performed.
 
-* main.c        - contains the main functioning of the shell including printing the backgound process' exit status, shell prompt, signal handling functions (ctrl+C, ctrl+Z and ctrl+D)
-* functions.h   - contains all the required headers and functions, it also contains global variables/arrays used across the files
-* cd.c          - cd command (same as shell functionality)
-* pinfo.c       - pinfo command 
-* echo.c        - echo command (same as shell functionality)
-* pwd.c         - pwd command (same as shell functionality)
-* ls.c          - ls command (same as shell functionality)
-* fgbg.c        - handling background and foreground processes for commands which are executed through execvp
-* repeat.c      - repeat command
-* bg.c          - Handles the bg functionality (Changes the state of a stopped background job to running)
-* exec.c        - Contains the main execution of the shell commands (calls all individual functions)
-* fg.c          - Handles the fg functionality (Brings the running or stopped background job to the foreground, and changes its state to running)
-* ioredir.c     - Handles the basic input/output redirection (more related stuff in exec.c including piping+ioredir)
-* jobs.c        - Implements jobs functionality (prints a list of all currently running background processes spawned by the shell in alphabetical order of the command name, along with their job number)
-* repeat.c      - Implements repeat functionality (h executes a particular command in fixed time interval for a certain period.)
-* sig.c         - Implements sig functionality (Takes the job number of a running job and sends the signal corresponding to signal number to that process)
+## Assumptions: <br>
+* The history will be displayed for maximum 20 latest commands. <br>
+* At max 100 commands will be given in one line. <br>
+* Each command is less than 100 characters. <br>
+* All paths involved are less than 1000 characters. <br>
 
-Assumptions: (apart from the assumptions made in assignment pdf)
+## Features: <br>
+* Builtin commands - {cd,pwd,echo}. <br>
+* ls command - implemented various flags including -a - l. <br>
+* System commands with and without arguments. <br>
+* Foreground: process waits until the commands get executed. <br>
+* Background: process doesn't wait for system commands get executed. <br>
+* Upon completion of background, a completion message is prompted. <br>
+* Repeat command to repeat a command multiple times. <br>
+* pinfo command to display process information. <br>
+* jobs: it displays information of the currently running background processes <br>
+* sig: it kills a background process
+* fg: it brings a background process to foreground and runs it
+* bg: it stops a running background process.
 
-- I have assumed reasonable lengths of commands and file/directory names.
-- The ranges of limits vary from 100-1000 throughout the shell in various functions.
+## How to run the shell: <br>
+* The makefile will compile the code. <br>
+* Enter ``make`` command to compile the code. <br>
+* The shell can be executed by running the ``./a.out`` executable. <br>
+* ./a.out to run the program.<br>
+* Enter ``quit`` to exit the shell. <br>
+
+## Redirection and piping:
+* Redirection and piping functionality has been added in the input.c file
+* In this file, the redirections of inputs and outputs have been handled.
+* Piping of commands is also implemented in the same file.
+
+## Signal Handling: <br>
+* <kbd>ctrl</kbd> + <kbd>c</kbd> : terminates any running foreground process
+* <kbd>ctrl</kbd> + <kbd>z</kbd> : sends a foreground process to background and changes its state from running to stopped.
+* <kbd>ctrl</kbd> + <kbd>d</kbd> : terminates the shell.
